@@ -20,6 +20,8 @@ const (
 
 type Metric interface {
 	Serialize() []byte
+	// same as Serialize, but avoids an allocation.
+	SerializeTo(dst []byte)
 	String() string // convenience function for string(Serialize())
 	Copy() Metric
 	// Split will attempt to return multiple metrics with the same timestamp
